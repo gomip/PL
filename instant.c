@@ -1,6 +1,3 @@
-// PL_test.cpp: 콘솔 응용 프로그램의 진입점을 정의합니다.
-//
-
 #include "stdafx.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,12 +26,12 @@ int main()
 	int turn = rand() % 2 + 1;
 
 	if (turn == 1) {
-		printf("A goes first\n");
-		p = 'O';
+	printf("A goes first\n");
+	p = 'O';
 	}
 	else {
-		printf("B goes first\n");
-		p = 'X';
+	printf("B goes first\n");
+	p = 'X';
 	}
 	*/
 
@@ -82,7 +79,7 @@ void Generate(int* arr, const char* fileName) {
 	fopen_s(&fp, fileName, "w");
 	for (int i = 0; i < 9; i++) {
 		//fprintf(fp, "Move [%d] = %d\n", i+1, arr[i]);
-		fprintf(fp,"%d\n",arr[i]);
+		fprintf(fp, "%d\n", arr[i]);
 	}
 	fclose(fp);
 }
@@ -91,12 +88,10 @@ int read_file(const char* fileName) {
 	FILE *fp2;
 	char line[9];
 	fopen_s(&fp2, fileName, "r");
-	//int turn = rand() % 2 + 1;
 	int i;
-	int x = int(line);
 
 	printf("\nFile name : %s\n", fileName);
-	
+
 	if (fp2 == NULL) {
 		printf("error\n");
 		return 1;
@@ -104,20 +99,23 @@ int read_file(const char* fileName) {
 
 	/*
 	while (fgets(line, 100, fp2) != NULL) {
-		printf("%s", line);
+	printf("%s", line);
 	}
 	*/
 
+	printf(" A goes first\n");
+
 	for (i = 0; i < 9; i++) {
 		fgets(line, 9, fp2);
-		printf("%s",line);
+		printf("%s", line);
+		int x = atoi(line);
 		if (i % 2 == 0) {
 			p = 'O';
-			board[i+1] = p;
+			board[x] = p;
 		}
 		else {
 			p = 'X';
-			board[i+1]= p;
+			board[x] = p;
 		}
 	}
 
