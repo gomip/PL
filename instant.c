@@ -9,6 +9,7 @@ void init_board();
 char board[10] = { ' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 int check_win(); //check game state 1 = win -1 = draw 0 = none
 int state;
+void check_state(int finish);
 
 char p; //check player 
 
@@ -16,24 +17,12 @@ int main()
 {
 	int value1[9];
 	int checkRepeat = 0; //to avoid repeat in random variable
-	int finish; // check game state
+	int finish=0; // check game state
 
 	srand(time(NULL));
 
 	init_board();
 
-	/*
-	int turn = rand() % 2 + 1;
-
-	if (turn == 1) {
-	printf("A goes first\n");
-	p = 'O';
-	}
-	else {
-	printf("B goes first\n");
-	p = 'X';
-	}
-	*/
 
 	printf("\n======= List ======\n");
 	for (int i = 0; i < 9; i++) {
@@ -51,25 +40,9 @@ int main()
 
 	Generate(value1, "move.txt");
 	read_file("move.txt");
-
 	init_board();
-	finish = check_win();
+	//finish = check_win();
 
-
-	if (finish == -1) {
-		printf("draw\n");
-	}
-	else if (finish == 1) {
-		if (p == 'O') {
-			printf("A win\n");
-		}
-		else {
-			printf("B win\n");
-		}
-	}
-	else {
-		printf("\n");
-	}
 	return 0;
 }
 
@@ -86,6 +59,7 @@ void Generate(int* arr, const char* fileName) {
 
 int read_file(const char* fileName) {
 	FILE *fp2;
+	int finish=0;
 	char line[9];
 	fopen_s(&fp2, fileName, "r");
 	int i;
@@ -103,21 +77,27 @@ int read_file(const char* fileName) {
 	}
 	*/
 
-	printf(" A goes first\n");
+	printf("A goes first\n");
 
 	for (i = 0; i < 9; i++) {
 		fgets(line, 9, fp2);
-		printf("%s", line);
+		//printf("%s", line);
 		int x = atoi(line);
-		if (i % 2 == 0) {
-			p = 'O';
-			board[x] = p;
+		if (finish == 0) {
+			if (i % 2 == 0) {
+				printf("A : %s", line);
+				p = 'O';
+				board[x] = p;
+			}
+			else {
+				printf("B : %s", line);
+				p = 'X';
+				board[x] = p;
+			}
 		}
-		else {
-			p = 'X';
-			board[x] = p;
-		}
+		finish = check_win();
 	}
+	check_state(finish);
 
 	printf("\n");
 
@@ -137,7 +117,6 @@ void init_board() {
 }
 
 int check_win() {
-	int i;
 	//horizontal and vertical
 	if (board[1] == board[2] && board[2] == board[3] && board[1] != ' ') {
 		return 1;
@@ -168,5 +147,23 @@ int check_win() {
 	}
 	else {
 		return 0;
+	}
+}
+
+void check_state(int finish) {
+	printf("====================\n");
+	if (finish == -1) {
+		printf("\ndraw\n");
+	}
+	else if (finish == 1) {
+		if (p == 'O') {
+			printf("\nA win");
+		}
+		else {
+			printf("\nB win");
+		}
+	}
+	else {
+		printf("\n");
 	}
 }
