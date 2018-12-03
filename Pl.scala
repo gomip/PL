@@ -11,12 +11,15 @@ object Pl{
 
         val valueText=new Array[Int](9)
 
-        val (start,end)=Pair(1,9)
-        val rnd=new scala.util.Random()
+        //val (start,end)=Pair(1,9)
+        //val rnd=new scala.util.Random()
+        val x=scala.util.Random.shuffle(List(1,2,3,4,5,6,7,8,9))
+        println(x)
+        val arr_x=x.toArray
 
         println("\n====List====\n")
         for (i<-0 to 8) {
-            valueText(i) = start + rnd.nextInt((end - start) + 1)
+            valueText(i) = arr_x(i)//start + rnd.nextInt((end - start) + 1)
             println("Move ["+(i+1)+"]="+valueText(i))
         }
         Generate(valueText)
@@ -114,7 +117,7 @@ object Pl{
               println("\nA Win\n")
             }
             else{
-              println("\nA Win\n")
+              println("\nB Win\n")
             }
         }
         else {
