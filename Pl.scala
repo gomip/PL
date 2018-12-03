@@ -65,13 +65,13 @@ object Pl{
 
     def drawBoard(): Unit = {
       println("\n====Board====\n")
-      println("---------------")
+      println("-------------")
       println("| "+init_board(1)+" │ "+init_board(2)+" │ "+init_board(3)+" │ ")
-      println("---------------")
+      println("-------------")
       println("| "+init_board(4)+" │ "+init_board(5)+" │ "+init_board(6)+" │")
-      println("---------------")
+      println("-------------")
       println("| "+init_board(7)+" │ "+init_board(8)+" │ "+init_board(9)+" │")
-      println("---------------")
+      println("-------------")
     }
 
     def checkWin():Int={
