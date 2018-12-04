@@ -1,6 +1,6 @@
 import util.control.Breaks._ //break문을 위해 import
-import java.io._ //random 을 수행하기 위해
-import scala.io.Source //file io 작업 처리
+import java.io._ //random 을 수행하기 위해,file io write
+import scala.io.Source //file io read작업 처리 
 
 object Pl{
   var init_board=Array(" "," "," "," "," "," "," "," "," "," ")
